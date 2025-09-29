@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X10Card.NewUserRegistration.MiscellaneousDetailsPage"
+             Title="MiscellaneousDetailsPage">
+
+    <NavigationPage.TitleView>
+        <Grid ColumnDefinitions="Auto,*" VerticalOptions="Center">
+            <Image Source="ic_himachallogo.png" HeightRequest="40" VerticalOptions="Center"/>
+            <Label Text="X10 (Registration Card)"
+                   Grid.Column="1"
+                   FontSize="18"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="ic_home.png" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+
+        <Grid Margin="9" RowDefinitions="*,Auto">
+
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout Spacing="5">
+
+                    <Button x:Name="btn_header" CornerRadius="10" Text="Miscellaneous Details" HorizontalOptions="Fill" TextColor="White" BackgroundColor="Navy" FontSize="16" FontAttributes="Bold"/>
+
+                    <Border StrokeShape="RoundRectangle 10" Stroke="#058ef2" VerticalOptions="Fill" Padding="10">
+                        <VerticalStackLayout>
+
+                            <Label Text="ENTER PHYSICAL INFORMATION DETAILS" Margin="0,10" BackgroundColor="Navy" TextColor="White" Padding="5" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                            <Border Stroke="Navy" StrokeShape="RoundRectangle 20" Padding="10">
+                                <VerticalStackLayout>
+
+                                    <Label Text="EYESIGHT" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                    <Entry Keyboard="Numeric" MaxLength="5" TextColor="Black" PlaceholderColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="ENTER EYESIGHT" x:Name="Entry_EYESIGHT" />
+
+                                    <Label Text="HEIGHT" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                    <Entry Keyboard="Numeric" MaxLength="5" TextColor="Black" PlaceholderColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="ENTER HEIGHT" x:Name="Entry_HEIGHT" />
+
+                                    <Label Text="WEIGHT" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                    <Entry Keyboard="Numeric" MaxLength="5" TextColor="Black" PlaceholderColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="ENTER WEIGHT" x:Name="Entry_WEIGHT" />
+
+                                    <Label Text="CHEST NORMAL" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                    <Entry Keyboard="Numeric" MaxLength="5" TextColor="Black" PlaceholderColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="ENTER CHEST NORMAL" x:Name="Entry_CHESTNORMAL" />
+
+                                    <Label Text="CHEST EXPANDED" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                    <Entry Keyboard="Numeric" MaxLength="5" TextColor="Black" PlaceholderColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="ENTER CHEST EXPANDED" x:Name="Entry_CHESTEXPANDED" />
+
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Label Text="ENTER SALARY EXPECTATIONS DETAILS (MONTHLY)" BackgroundColor="Navy" Margin="0,10" TextColor="White" Padding="5" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                            <Border Stroke="Navy" StrokeShape="RoundRectangle 20" Padding="10" >
+                                <VerticalStackLayout>
+
+                                    <Label Text="SALARY IN HOME DISTRICT" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                    <Entry Keyboard="Numeric" MaxLength="8" TextColor="Black" PlaceholderColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="ENTER SALARY IN HOME DISTRICT" x:Name="Entry_SALARYINHOMEDISTRICT" />
+
+                                    <Label Text="SALARY IN HP" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                    <Entry Keyboard="Numeric" MaxLength="8" TextColor="Black" PlaceholderColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="ENTER SALARY IN HP" x:Name="Entry_SALARYINHP" />
+
+                                    <Label Text="SALARY OUTSIDE HP" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                    <Entry Keyboard="Numeric" MaxLength="8" TextColor="Black" PlaceholderColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="ENTER SALARY OUTSIDE HP" x:Name="Entry_SALARYOUTSIDEHP" />
+
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Label Text="SELECT SECTOR OF INTEREST" BackgroundColor="Navy" TextColor="White" Margin="0,10" Padding="5" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                            <Border Stroke="Navy" StrokeShape="RoundRectangle 20" Padding="10">
+                                <VerticalStackLayout>
+
+                                    <Label Text="SECTOR OF INTEREST" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                    <Picker TextColor="Black" TitleColor="Black" Title="SELECT SECTOR OF INTEREST" x:Name="picker_SectorOfInterest" SelectedIndexChanged="picker_SectorOfInterest_SelectedIndexChanged"/>
+
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Label Text="LANGUAGES KNOWN" BackgroundColor="Navy" TextColor="White" Margin="0,10" Padding="5" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                            <VerticalStackLayout VerticalOptions="Fill">
+                                <Grid x:Name="grid_data" BackgroundColor="White">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2.5*"/>
+                                        <ColumnDefinition Width="2.5*"/>
+                                        <ColumnDefinition Width="2.5*"/>
+                                        <ColumnDefinition Width="2.5*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label VerticalOptions="Center" FontSize="15" HorizontalOptions="Start" Text="Language" HorizontalTextAlignment="Start" TextColor="Navy" Grid.Column="0" FontAttributes="Bold"/>
+                                    <Label VerticalOptions="Center" FontSize="15" HorizontalOptions="Center" Text="Read" TextColor="Navy" Grid.Column="1" FontAttributes="Bold"/>
+                                    <Label VerticalOptions="Center" FontSize="15" HorizontalOptions="Center" Text="Write" TextColor="Navy" Grid.Column="2" FontAttributes="Bold"/>
+                                    <Label VerticalOptions="Center" FontSize="15" HorizontalOptions="Center" Text="Speak" TextColor="Navy" Grid.Column="3" FontAttributes="Bold"/>
+                                </Grid>
+
+                                <ListView x:Name="listview_language" HasUnevenRows="True" SeparatorColor="Transparent" SelectionMode="None" VerticalOptions="Fill">
+                                    <ListView.ItemTemplate >
+                                        <DataTemplate>
+                                            <ViewCell >
+                                                <Grid x:Name="grid_data" BackgroundColor="White">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="2.5*"/>
+                                                        <ColumnDefinition Width="2.5*"/>
+                                                        <ColumnDefinition Width="2.5*"/>
+                                                        <ColumnDefinition Width="2.5*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Label FontSize="16" Text="{Binding LangName}" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="Maroon" Grid.Row="0" Grid.Column="0"/>
+                                                    <Image HeightRequest="30" Source="{Binding Readimg}" HorizontalOptions="Center" Grid.Row="0" Grid.Column="1"/>
+                                                    <Image HeightRequest="30" Source="{Binding Writeimg}" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2"/>
+                                                    <Image HeightRequest="30" Source="{Binding Speakimg}" HorizontalOptions="Center" Grid.Row="0" Grid.Column="3"/>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+
+                                <Button x:Name="btn_addlanguage" FontSize="16" Text="Add Language(s)"  CornerRadius="15" HorizontalOptions="Center" Clicked="btn_addlanguage_Clicked" Padding="5" Margin="0" FontAttributes="Bold"/>
+
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Fill" Spacing="10" Margin="0, 10, 0, 0">
+
+                <Button IsVisible="False" x:Name="btn_cancel" FontSize="18" Text="Cancel" CornerRadius="15" 
+            HorizontalOptions="Fill" Clicked="btn_cancel_Clicked" Padding="10"/>
+
+                <Button IsVisible="False" x:Name="btn_next" FontSize="20" Text="Next" CornerRadius="15" 
+            HorizontalOptions="Fill" Clicked="btn_next_Clicked" Padding="10" FontAttributes="Bold"/>
+
+                <Button IsVisible="False" x:Name="btn_submit" FontSize="20" Text="Save &amp; Next" CornerRadius="15" 
+            HorizontalOptions="Fill" Clicked="btn_submit_Clicked" Padding="10" FontAttributes="Bold"/>
+
+            </HorizontalStackLayout>
+        </Grid>
+
+        <ContentView x:Name="popupaddlanguage" BackgroundColor="#C0808080" Padding="10" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >
+            <VerticalStackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="white" Padding="10">
+                <Label x:Name="lbl_popuplanguage"  Text="Add Language" Padding="6" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
+                <ScrollView>
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Select Language *" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                        <Picker TextColor="Black" TitleColor="Black" Title="SELECT QUALIFICATION " x:Name="picker_popuplanguage" SelectedIndexChanged="picker_popuplanguage_SelectedIndexChanged"/>
+
+                        <HorizontalStackLayout HorizontalOptions="Fill" Spacing="10">
+                            <Label Text="Read" TextColor="Navy" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <CheckBox x:Name="chkbx_read" HorizontalOptions="Start" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout HorizontalOptions="Fill" Spacing="10">
+                            <Label Text="Write" TextColor="Navy" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <CheckBox x:Name="chkbx_Write" HorizontalOptions="Start" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout HorizontalOptions="Fill" Spacing="10">
+                            <Label Text="Speak" TextColor="Navy" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <CheckBox x:Name="chkbx_Speak" HorizontalOptions="Start" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </ScrollView>
+
+                <HorizontalStackLayout HorizontalOptions="Fill" Spacing="10" Margin="0, 10, 0, 0">
+                    <Button x:Name="btn_popuplanguagecancel" FontSize="18" Text="Cancel"  CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_popuplanguagecancel_Clicked" Padding="10"/>
+                    <Button x:Name="btn_popuplanguagesubmit" FontSize="20" Text="Save"  CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_popuplanguagesubmit_Clicked" Padding="10" FontAttributes="Bold"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ContentView>
+
+        <ContentView x:Name="Loading_activity"
+                     BackgroundColor="#C0808080"
+                     Padding="20"
+                     IsVisible="False"
+                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All">
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Border Stroke="Transparent" BackgroundColor="White" Padding="10">
+                    <HorizontalStackLayout Spacing="10">
+                        <ActivityIndicator IsRunning="True" IsVisible="True"/>
+                        <Label x:Name="lbl_PleaseWait"
+                               Text="Please Wait ..."
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ContentView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X10Card.NewUserRegistration.QualficationDetailsPage"
+             Title="QualficationDetailsPage">
+    <NavigationPage.TitleView>
+        <Grid ColumnDefinitions="Auto,*" VerticalOptions="Center">
+            <Image Source="ic_himachallogo.png" HeightRequest="40" VerticalOptions="Center"/>
+            <Label Text="X10 (Registration Card)"
+                   Grid.Column="1"
+                   FontSize="18"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="ic_home.png" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+
+        <Grid Margin="9" RowDefinitions="*,Auto">
+
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout Spacing="5">
+                    <Button x:Name="btn_header" CornerRadius="5" Text="Education Details" HorizontalOptions="Fill" TextColor="White" BackgroundColor="Navy" FontSize="16" FontAttributes="Bold"/>
+
+                    <Border StrokeShape="RoundRectangle 10" Stroke="#058ef2" Padding="10">
+                        <VerticalStackLayout>
+
+                            <ListView x:Name="listview_Qualificationdetails" VerticalOptions="Start" HasUnevenRows="True" SeparatorColor="#126b8a" SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Border StrokeShape="RoundRectangle 20" BackgroundColor="White" Stroke="#0072b6" Padding="10" Margin="10">
+                                                <VerticalStackLayout Spacing="0">
+                                                    <Label FontSize="16" Text="Qualification" TextColor="Navy" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                                    <Label FontSize="16" Text="{Binding QualNm}" HorizontalOptions="Fill" TextColor="Maroon"/>
+
+                                                    <Label FontSize="16" Text="Marks(%)" TextColor="Navy" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                                    <Label FontSize="16" Text="{Binding perMarks}" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="Maroon"/>
+
+                                                    <Label FontSize="16" Text="Passing Year" TextColor="Navy" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                                    <Label FontSize="16" Text="{Binding year}" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="Maroon"/>
+
+                                                    <Label FontSize="16" Text="Status" TextColor="Navy" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                                    <Label FontSize="16" Text="{Binding StatusDesc}" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="Maroon"/>
+
+                                                    <HorizontalStackLayout HorizontalOptions="Fill">
+                                                        <ImageButton IsVisible="{Binding imgeditdeletevisibility}" x:Name="img_edit" CommandParameter="{Binding QualCd}" Clicked="img_edit_Clicked" HorizontalOptions="Fill" Source="ic_edit" BackgroundColor="Transparent" HeightRequest="35"/>
+                                                        <ImageButton IsVisible="{Binding imgeditdeletevisibility}" x:Name="img_delete" CommandParameter="{Binding QualCd}" Clicked="img_delete_Clicked" HorizontalOptions="Fill" Source="ic_delete" BackgroundColor="Transparent" HeightRequest="35"/>
+                                                        <ImageButton IsVisible="{Binding pdfimgvisibility}" x:Name="img_pdf" CommandParameter="{Binding QualCd}" Clicked="img_pdf_Clicked" HorizontalOptions="Fill" Source="ic_viewpdf.png" BackgroundColor="Transparent" HeightRequest="35"/>
+                                                    </HorizontalStackLayout>
+                                                </VerticalStackLayout>
+                                            </Border>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                            <Button CornerRadius="10" x:Name="btn_AddQualification" Text="Add Qualification" HorizontalOptions="Center" Padding="5" TextColor="White" BackgroundColor="Navy" FontSize="16" FontAttributes="Bold" Clicked="btn_AddQualification_Clicked"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+            <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Fill" Spacing="10" Margin="0, 10, 0, 0">
+
+                <Button IsVisible="False" x:Name="btn_cancel1" FontSize="18" Text="Cancel" BackgroundColor="#0072b6" TextColor="White" CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_cancel1_Clicked" Padding="10"/>
+
+                <Button IsVisible="False" x:Name="btn_next" FontSize="20" Text="Next" BackgroundColor="#058ef2" TextColor="White" CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_next_Clicked" Padding="10" FontAttributes="Bold"/>
+
+                <Button IsVisible="False" x:Name="btn_submit1" FontSize="20" Text="Save &amp; Next" BackgroundColor="#058ef2" TextColor="White" CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_submit1_Clicked" Padding="10" FontAttributes="Bold"/>
+
+            </HorizontalStackLayout>
+        </Grid>
+
+        <ContentView x:Name="popupaddqualification" BackgroundColor="#C0808080" Padding="10" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <VerticalStackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="white" Padding="10">
+                <Label x:Name="lbl_popupvacancy" BackgroundColor="#0072b6" TextColor="White" Text="Add Qualification" Padding="6" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16" FontAttributes="Bold"/>
+                <Label Text="*Fields marked are mandatory" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Navy" FontSize="14"/>
+
+                <ScrollView VerticalOptions="Fill">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="SELECT QUALIFICATION *" TextColor="Navy" FontSize="16" FontAttributes="Bold"/>
+                        <Editor Placeholder="Tap To Select Qualification" x:Name="editor_QualificationName" PlaceholderColor="Black" HeightRequest="50" Focused="editor_QualificationName_Focused" AutoSize="TextChanges" FontSize="16"/>
+
+                        <Label Text="SELECT BOARD *" TextColor="Navy" FontSize="16" FontAttributes="Bold"/>
+                        <Picker TextColor="Black" TitleColor="Black" Title="SELECT BOARD " x:Name="picker_BOARD" SelectedIndexChanged="picker_BOARD_SelectedIndexChanged"/>
+
+                        <Label Text="ENTER TOTAL MARKS" TextColor="Navy" FontSize="16" FontAttributes="Bold"/>
+                        <Entry x:Name="entry_TOTALMARKS" Placeholder="ENTER TOTAL MARKS" MaxLength="7" Keyboard="Numeric" TextColor="Black" FontSize="16"/>
+
+                        <Label Text="ENTER MARKS OBTAINED" TextColor="Navy" FontSize="16" FontAttributes="Bold"/>
+                        <Entry x:Name="entry_MARKSOBTAINED" Placeholder="ENTER MARKS OBTAINED" MaxLength="7" Keyboard="Numeric" TextColor="Black" FontSize="16"/>
+
+                        <Button x:Name="btn_calclulatepercent" Text="Calculate Percentage" HorizontalOptions="Center" FontAttributes="Bold" Clicked="btn_calclulatepercent_Clicked" FontSize="16"/>
+                        <StackLayout x:Name="stack_percentage" IsVisible="false">
+                            <Label Text="PERCENTAGE *" TextColor="Navy" FontSize="16" FontAttributes="Bold"/>
+                            <Entry x:Name="entry_Percentage" IsReadOnly="true" Placeholder="ENTER PERCENTAGE" MaxLength="5" Keyboard="Numeric" TextColor="Black" FontSize="16"/>
+                        </StackLayout>
+
+                        <Label Text="ENTER YEAR OF PASSING *" TextColor="Navy" FontSize="16" FontAttributes="Bold"/>
+                        <Entry x:Name="entry_YEAROFPASSING" Placeholder="ENTER YEAR OF PASSING" MaxLength="4" Keyboard="Numeric" TextColor="Black" FontSize="16"/>
+
+                        <Label Text="SELECT REGISTRATION DATE *" TextColor="Navy" FontSize="16" FontAttributes="Bold"/>
+                        <VerticalStackLayout HorizontalOptions="Fill">
+                            <Entry TextColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="SELECT REGISTRATION DATE" x:Name="Entry_RegistrationDate" Focused="Entry_RegistrationDate_Focused"/>
+                            <DatePicker x:Name="datepicker_RegistrationDate" IsVisible="false" Format="dd/MM/yyyy" DateSelected="datepicker_RegistrationDate_DateSelected" HorizontalOptions="Fill"/>
+                        </VerticalStackLayout>
+
+                        <Label Text="Qualification Document Details" BackgroundColor="Navy" TextColor="White" Padding="5" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                        <Border Stroke="Navy" StrokeShape="RoundRectangle 20" Padding="10">
+                            <VerticalStackLayout>
+                                <Label Text="SELECT ISSUE DATE *" TextColor="Navy" FontSize="16" FontAttributes="Bold"/>
+                                <VerticalStackLayout HorizontalOptions="Fill">
+                                    <Entry TextColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="SELECT ISSUE DATE" x:Name="Entry_issuedate" Focused="Entry_issuedate_Focused"/>
+                                    <DatePicker x:Name="datepicker_issuedate" IsVisible="false" Format="dd/MM/yyyy" DateSelected="datepicker_issuedate_DateSelected" HorizontalOptions="Fill"/>
+                                </VerticalStackLayout>
+
+                                <Label Text="ENTER CERTIFICATE NO *" TextColor="Navy" FontSize="16" FontAttributes="Bold"/>
+                                <Entry x:Name="entry_certificateno" Placeholder="ENTER CERTIFICATE NO" TextColor="Black" FontSize="16"/>
+
+                                <HorizontalStackLayout>
+                                    <Label x:Name="lbl_doc1" Text="DOCUMENT" TextColor="Navy" FontSize="16" HorizontalOptions="Fill" VerticalTextAlignment="Center" FontAttributes="Bold" Padding="5"/>
+                                    <Label x:Name="lbl_pdf1" IsVisible="false" Text="PDF Uploaded Successfully" VerticalTextAlignment="Center"/>
+                                    <Button x:Name="btn_uploaddoc1" Text="Choose File..." Clicked="btn_uploaddoc1_Clicked"/>
+                                    <ImageButton x:Name="img_pdfedit" IsVisible="false" Clicked="img_pdfedit_Clicked" HorizontalOptions="Center" Source="ic_viewpdf.png" BackgroundColor="Transparent" HeightRequest="35"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                </ScrollView>
+                <HorizontalStackLayout HorizontalOptions="Fill" Spacing="10" Margin="0, 10, 0, 0">
+                    <Button x:Name="btn_cancel" FontSize="18" Text="Cancel" Margin="0" BackgroundColor="#0072b6" TextColor="White" CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_cancel_Clicked" Padding="10"/>
+                    <Button x:Name="btn_submit" FontSize="20" Text="Save" Margin="0" BackgroundColor="#058ef2" TextColor="White" CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_submit_Clicked" Padding="10" FontAttributes="Bold"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ContentView>
+
+        <ContentView x:Name="popupQualificationname" BackgroundColor="#C0808080" Padding="20" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="white">
+                <Label x:Name="lbl_popupQualificationname" Text="Tap To Select Qualification Name" Padding="6" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16" FontAttributes="Bold" TextColor="Navy"/>
+
+                <Border Padding="0" Margin="3" StrokeShape="RoundRectangle 20" Stroke="Navy">
+                    <SearchBar Placeholder="Type Qualification Name" x:Name="SearchBar_Qualificationname" IsSpellCheckEnabled="False" PlaceholderColor="#736f6f" BackgroundColor="#e0e0e0" TextColor="Black" CancelButtonColor="Red" Keyboard="Plain" TextChanged="SearchBar_Qualificationname_TextChanged"/>
+                </Border>
+
+                <ListView x:Name="listview_Qualificationname" HasUnevenRows="True" SeparatorColor="Navy" ItemTapped="listview_Qualificationname_ItemTapped" BackgroundColor="White" HeightRequest="300">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" Grid.Row="0">
+                                    <Label Text="{Binding QualificationName}" HorizontalOptions="Fill" Padding="10" HorizontalTextAlignment="Start" TextColor="Black"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button BackgroundColor="Navy" TextColor="White" FontAttributes="Bold" x:Name="popupQualificationnameCancel" Clicked="popupQualificationnameCancel_Clicked" Text="Cancel" Margin="5" HorizontalOptions="Fill"/>
+            </VerticalStackLayout>
+        </ContentView>
+
+        <ContentView x:Name="Loading_activity"
+                     BackgroundColor="#C0808080"
+                     Padding="20"
+                     IsVisible="False"
+                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All">
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Border Stroke="Transparent" BackgroundColor="White" Padding="10">
+                    <HorizontalStackLayout Spacing="10">
+                        <ActivityIndicator IsRunning="True" IsVisible="True"/>
+                        <Label x:Name="lbl_PleaseWait"
+                               Text="Please Wait ..."
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ContentView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X10Card.NewUserRegistration.SubCategoryPage"
+             Title="Sub-Category Details">
+
+    <NavigationPage.TitleView>
+        <Grid ColumnDefinitions="Auto,*" VerticalOptions="Center">
+            <Image Source="ic_himachallogo.png" HeightRequest="40" VerticalOptions="Center"/>
+
+            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" Spacing="0">
+                <Label x:Name="lbl_navigation_header1" Style="{StaticResource NavigationLabelColor}" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center"
+                       Text="Department Of Labour &amp; Employment" VerticalTextAlignment="Center" />
+                <Label x:Name="lbl_navigation_header" Style="{StaticResource NavigationLabelColor}" FontSize="13" FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </VerticalStackLayout>
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="ic_home.png" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+
+        <Grid Margin="9" RowDefinitions="*,Auto">
+
+            <VerticalStackLayout Grid.Row="0" VerticalOptions="Fill" Spacing="5">
+
+                <Button x:Name="btn_header" CornerRadius="10" Text="Sub-Category Details" HorizontalOptions="Fill" TextColor="White" BackgroundColor="Navy" FontSize="16" FontAttributes="Bold"/>
+
+                <Border StrokeShape="RoundRectangle 10" Stroke="#058ef2" VerticalOptions="Fill" Padding="10">
+                    <VerticalStackLayout>
+                        <VerticalStackLayout VerticalOptions="Fill">
+
+                            <ListView x:Name="listview_SubCategory" HasUnevenRows="True" SeparatorColor="#126b8a" SelectionMode="None" VerticalOptions="FillAndExpand">
+                                <ListView.ItemTemplate >
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Border StrokeShape="RoundRectangle 20" Margin="5" Padding="10" Shadow="{OnPlatform Default='False', Android='True', iOS='True'}" BackgroundColor="White" Stroke="#0072b6" VerticalOptions="Start">
+                                                <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="5" ColumnSpacing="10">
+
+                                                    <Label Grid.Row="0" Grid.Column="0" FontSize="16" Text="Sub Category" TextColor="Navy" FontAttributes="Bold" />
+                                                    <Label Grid.Row="0" Grid.Column="1" FontSize="16" Text="{Binding SubCategoryNm}" HorizontalTextAlignment="Start" TextColor="Maroon" />
+
+                                                    <Label Grid.Row="1" Grid.Column="0" FontSize="16" Text="Issue Date" TextColor="Navy" FontAttributes="Bold" />
+                                                    <Label Grid.Row="1" Grid.Column="1" FontSize="16" Text="{Binding issuedt}" HorizontalTextAlignment="Start" TextColor="Maroon" />
+
+                                                    <Label Grid.Row="2" Grid.Column="0" FontSize="16" Text="Valid Upto Date" TextColor="Navy" FontAttributes="Bold" />
+                                                    <Label Grid.Row="2" Grid.Column="1" FontSize="16" Text="{Binding validuptodt}" HorizontalTextAlignment="Start" TextColor="Maroon" />
+
+                                                    <Label Grid.Row="3" Grid.Column="0" FontSize="16" Text="Certificate No." TextColor="Navy" FontAttributes="Bold" />
+                                                    <Label Grid.Row="3" Grid.Column="1" FontSize="16" Text="{Binding DocCertNo}" HorizontalTextAlignment="Start" TextColor="Maroon" />
+
+                                                    <Label Grid.Row="4" Grid.Column="0" FontSize="16" Text="Status" TextColor="Navy" FontAttributes="Bold" />
+                                                    <Label Grid.Row="4" Grid.Column="1" FontSize="16" Text="{Binding StatusDesc}" HorizontalTextAlignment="Start" TextColor="Maroon" />
+
+                                                    <HorizontalStackLayout Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="Center" Spacing="20" Margin="0,5,0,0">
+                                                        <ImageButton IsVisible="{Binding imgeditdeletevisibility}" x:Name="img_edit" CommandParameter="{Binding SubCategory}" Clicked="img_edit_Clicked" Source="ic_edit" BackgroundColor="Transparent" HeightRequest="35" />
+                                                        <ImageButton IsVisible="{Binding imgeditdeletevisibility}" x:Name="img_delete" CommandParameter="{Binding SubCategory}" Clicked="img_delete_Clicked" Source="ic_delete" BackgroundColor="Transparent" HeightRequest="35" />
+                                                        <ImageButton IsVisible="{Binding pdfimgvisibility}" x:Name="img_pdf" CommandParameter="{Binding SubCategory}" Clicked="img_pdf_Clicked" Source="ic_viewpdf.png" BackgroundColor="Transparent" HeightRequest="35" />
+                                                    </HorizontalStackLayout>
+                                                </Grid>
+                                            </Border>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                        </VerticalStackLayout>
+
+                        <Button VerticalOptions="End" CornerRadius="10" x:Name="btn_AddSubcatgeory" Text="Add Sub-Category" HorizontalOptions="Center" Padding="5" TextColor="White" BackgroundColor="Navy" FontSize="16" FontAttributes="Bold" Clicked="btn_AddSubcatgeory_Clicked"/>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+            <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Fill" Spacing="10" Margin="0, 10, 0, 0">
+                <Button IsVisible="false" x:Name="btn_cancel1" FontSize="18" Text="Cancel" BackgroundColor="#0072b6" TextColor="White" CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_cancel1_Clicked" Padding="10"/>
+                <Button IsVisible="false" x:Name="btn_submit1" FontSize="20" Text="Save &amp; Next" BackgroundColor="#058ef2" TextColor="White" CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_submit1_Clicked" Padding="10" FontAttributes="Bold"/>
+                <Button IsVisible="false" x:Name="btn_next" FontSize="20" Text="Next" BackgroundColor="#058ef2" TextColor="White" CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_next_Clicked" Padding="10" FontAttributes="Bold"/>
+            </HorizontalStackLayout>
+        </Grid>
+
+        <ContentView x:Name="popupaddsubcategory" BackgroundColor="#C0808080" Padding="10" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >
+            <VerticalStackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="white" Padding="10">
+                <Label BackgroundColor="#0072b6" TextColor="White" Text="Add Sub Category Detail" Padding="6" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
+                <Label Text="*Fields marked are mandatory" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Navy" FontSize="14" />
+
+                <ScrollView>
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="SELECT SUB-CATEGORY *" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                        <Picker TextColor="Black" TitleColor="Black" Title="SELECT SUB-CATEGORY " x:Name="picker_SUBCATEGORY" SelectedIndexChanged="picker_SUBCATEGORY_SelectedIndexChanged"/>
+
+                        <Label Text="Sub Category Document Details" BackgroundColor="Navy" TextColor="White" Padding="5" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                        <Border StrokeShape="RoundRectangle 20" Stroke="Navy" Padding="5">
+                            <VerticalStackLayout Spacing="5">
+
+                                <Label Text="SELECT ISSUE DATE *" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                <HorizontalStackLayout HorizontalOptions="Fill">
+                                    <Entry TextColor="Black" PlaceholderColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="SELECT ISSUE DATE" x:Name="Entry_issuedate" Focused="Entry_issuedate_Focused" />
+                                    <DatePicker x:Name="datepicker_issuedate" IsVisible="false" Format="dd/MM/yyyy" DateSelected="datepicker_issuedate_DateSelected" HorizontalOptions="Fill"/>
+                                </HorizontalStackLayout>
+
+                                <Label Text="SELECT VALID UPTO DATE *" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                <HorizontalStackLayout HorizontalOptions="Fill">
+                                    <Entry TextColor="Black" PlaceholderColor="Black" HorizontalOptions="Fill" FontSize="16" Placeholder="SELECT VALID UPTO DATE" x:Name="Entry_validuptodate" Focused="Entry_validuptodate_Focused" />
+                                    <DatePicker x:Name="datepicker_validupto" IsVisible="false" Format="dd/MM/yyyy" DateSelected="datepicker_validupto_DateSelected" HorizontalOptions="Fill"/>
+                                </HorizontalStackLayout>
+
+                                <Label Text="ENTER CERTIFICATE NO *" TextColor="Navy" FontSize="16" FontAttributes="Bold" />
+                                <Entry x:Name="entry_certificateno" Placeholder="ENTER CERTIFICATE NO" TextColor="Black" FontSize="16" />
+
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label x:Name="lbl_doc1" Text="DOCUMENT" TextColor="Navy" FontSize="16" HorizontalOptions="Fill" VerticalTextAlignment="Center" FontAttributes="Bold" Padding="5"/>
+                                    <Label x:Name="lbl_pdf1" IsVisible="false" Text="PDF Uploaded Successfully" VerticalTextAlignment="Center" />
+                                    <Button x:Name="btn_uploaddoc1" Text="Choose File..." Clicked="btn_uploaddoc1_Clicked"/>
+                                    <ImageButton x:Name="img_pdfedit" IsVisible="false" Clicked="img_pdfedit_Clicked" Source="ic_viewpdf.png" BackgroundColor="Transparent" HeightRequest="35" />
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                </ScrollView>
+
+                <HorizontalStackLayout HorizontalOptions="Fill" Spacing="10" Margin="0, 10, 0, 0">
+                    <Button x:Name="btn_popupsubcategorycancel" FontSize="18" Text="Cancel" BackgroundColor="#0072b6" TextColor="White" CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_popupsubcategorycancel_Clicked" Padding="10"/>
+                    <Button x:Name="btn_popupsubcategorysubmit" FontSize="20" Text="Save" BackgroundColor="#058ef2" TextColor="White" CornerRadius="15" HorizontalOptions="Fill" Clicked="btn_popupsubcategorysubmit_Clicked" Padding="10" FontAttributes="Bold"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ContentView>
+
+
+        <ContentView x:Name="Loading_activity" BackgroundColor="#C0808080" Padding="20" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Border BackgroundColor="White" Padding="10" Stroke="Transparent">
+                    <HorizontalStackLayout Spacing="10">
+                        <ActivityIndicator IsVisible="true" IsRunning="true" Margin="5"/>
+                        <Label x:Name="lbl_PleaseWait" Text="Please Wait ..." TextColor="Black" FontAttributes="Bold" HorizontalOptions="Fill" VerticalTextAlignment="Center"/>
+                    </HorizontalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ContentView>
+    </Grid>
+
+</ContentPage>
